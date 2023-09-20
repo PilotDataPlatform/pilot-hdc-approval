@@ -6,7 +6,7 @@ authors = ["Indoc Research"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-fastapi = "0.63.0"
+fastapi = "0.65.2"
 fastapi-utils = "0.2.1"
 uvicorn = "0.12.3"
 FastAPI-SQLAlchemy = "0.2.1"
