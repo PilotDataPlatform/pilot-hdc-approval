@@ -1,6 +1,7 @@
-# Copyright (C) 2022-2023 Indoc Systems
+# Copyright (C) 2022-Present Indoc Systems
 #
-# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
+# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE,
+# Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
 import logging
@@ -37,6 +38,9 @@ class Settings(BaseSettings):
     PORT: int = 8000
     HOST: str = '0.0.0.0'
 
+    LOGGING_LEVEL: int = logging.INFO
+    LOGGING_FORMAT: str = 'json'
+
     AUTH_SERVICE: str = 'http://127.0.0.1:5061'
     DATAOPS_SERVICE: str = 'http://127.0.0.1:5063'
     EMAIL_SERVICE: str = 'http://127.0.0.1:5065'
@@ -57,11 +61,6 @@ class Settings(BaseSettings):
     REDIS_PORT: int = 6379
 
     EMAIL_SUPPORT: str = 'random_email@not_a_host.not'
-
-    LOG_LEVEL_DEFAULT = logging.WARN
-    LOG_LEVEL_FILE = logging.WARN
-    LOG_LEVEL_STDOUT = logging.WARN
-    LOG_LEVEL_STDERR = logging.ERROR
 
     def __init__(self, *args: Any, **kwds: Any) -> None:
         super().__init__(*args, **kwds)

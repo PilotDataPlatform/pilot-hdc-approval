@@ -1,22 +1,15 @@
-# Copyright (C) 2022-2023 Indoc Systems
+# Copyright (C) 2022-Present Indoc Systems
 #
-# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
+# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE,
+# Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
 import httpx
-from common import LoggerFactory
 
 from app.config import ConfigClass
+from app.logger import logger
 from app.models.base import EAPIResponseCode
 from app.resources.error_handler import APIException
-
-logger = LoggerFactory(
-    'api_copy_request',
-    level_default=ConfigClass.LOG_LEVEL_DEFAULT,
-    level_file=ConfigClass.LOG_LEVEL_FILE,
-    level_stdout=ConfigClass.LOG_LEVEL_STDOUT,
-    level_stderr=ConfigClass.LOG_LEVEL_STDERR,
-).get_logger()
 
 
 async def trigger_copy_pipeline(

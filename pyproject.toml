@@ -1,18 +1,18 @@
 [tool.poetry]
 name = "service_approval"
-version = "2.2.0"
+version = "2.2.6"
 description = ""
 authors = ["Indoc Research"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-fastapi = "0.63.0"
+fastapi = "0.88.0"
 fastapi-utils = "0.2.1"
 uvicorn = "0.12.3"
 FastAPI-SQLAlchemy = "0.2.1"
 psycopg2-binary = "2.9.3"
 python-json-logger = "2.0.2"
-pilot-platform-common = "^0.1.0"
+pilot-platform-common = "0.3.0"
 httpx = "0.23.0"
 pytest-mock = "3.7.0"
 aioredis = "^2.0.1"

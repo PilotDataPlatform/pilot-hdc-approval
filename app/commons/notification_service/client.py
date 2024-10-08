@@ -1,6 +1,7 @@
-# Copyright (C) 2022-2023 Indoc Systems
+# Copyright (C) 2022-Present Indoc Systems
 #
-# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE, Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
+# Licensed under the GNU AFFERO GENERAL PUBLIC LICENSE,
+# Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
 from typing import List
@@ -8,7 +9,6 @@ from typing import Optional
 from uuid import UUID
 
 import httpx
-from common import LoggerFactory
 
 from app.commons.meta_services import bulk_get_by_ids
 from app.commons.notification_service.models import CopyRequestAction
@@ -17,15 +17,7 @@ from app.commons.notification_service.models import Location
 from app.commons.notification_service.models import Node
 from app.commons.notification_service.models import Target
 from app.commons.notification_service.models import TargetType
-from app.config import ConfigClass
-
-logger = LoggerFactory(
-    'api_copy_request',
-    level_default=ConfigClass.LOG_LEVEL_DEFAULT,
-    level_file=ConfigClass.LOG_LEVEL_FILE,
-    level_stdout=ConfigClass.LOG_LEVEL_STDOUT,
-    level_stderr=ConfigClass.LOG_LEVEL_STDERR,
-).get_logger()
+from app.logger import logger
 
 
 class Notification:

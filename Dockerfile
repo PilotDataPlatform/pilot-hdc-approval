@@ -1,4 +1,4 @@
-FROM python:3.9-buster AS base-image
+FROM docker-registry.ebrains.eu/hdc-services-image/base-image:python-3.10.12-v2 AS base-image
 
 ENV PYTHONDONTWRITEBYTECODE=true \
     PYTHONIOENCODING=UTF-8 \
@@ -8,7 +8,6 @@ ENV PYTHONDONTWRITEBYTECODE=true \
 
 ENV PATH="${POETRY_HOME}/bin:${PATH}"
 
-WORKDIR /usr/src/app
 RUN apt-get update && \
     apt-get install -y vim && \
     apt-get install -y less
@@ -16,10 +15,13 @@ RUN curl -sSL https://install.python-poetry.org | python3 -
 
 COPY poetry.lock pyproject.toml ./
 
-FROM base-image as web-image
+FROM base-image as approval-image
 RUN poetry install --no-dev --no-root --no-interaction
 COPY . .
 RUN chmod +x gunicorn_starter.sh
+
+RUN chown -R app:app /app
+USER app
 
 CMD ["python", "run.py"]
 
@@ -30,6 +32,10 @@ RUN poetry install --no-root --no-interaction
 ENV ALEMBIC_CONFIG=alembic.ini
 
 COPY . .
+
+RUN chown -R app:app /app
+USER app
+
 CMD psql ${DB_URI} -f migrations/scripts/create_approval_db.sql && \
 psql ${DB_URI} -f migrations/scripts/create_approval_schema.sql && \
 python3 -m alembic upgrade head
