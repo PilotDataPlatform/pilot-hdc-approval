@@ -18,7 +18,7 @@ from .config import ConfigClass
 
 
 def create_app():
-    """create app function."""
+    """Create app function."""
     app = FastAPI(
         title='Service Approval', description='Service Approval', docs_url='/v1/api-doc', version=ConfigClass.version
     )

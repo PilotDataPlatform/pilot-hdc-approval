@@ -7,7 +7,6 @@
 import json
 from enum import Enum
 from pathlib import Path
-from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel
@@ -48,9 +47,9 @@ class CopyRequestNotification(BaseModel):
     initiator_username: str
     project_code: str
     copy_request_id: UUID
-    source: Optional[Location]
-    destination: Optional[Location]
-    targets: Optional[conlist(Target, min_items=1)]
+    source: Location | None
+    destination: Location | None
+    targets: conlist(Target, min_items=1) | None
 
     def to_json(self):
         return json.loads(self.json())
@@ -109,7 +108,7 @@ class Node(dict):
     @property
     def display_path(self) -> Path:
         if self['parent_path']:
-            full_path = '{}/{}'.format(self['parent_path'], self['name'])
+            full_path = f'{self["parent_path"]}/{self["name"]}'
         else:
             full_path = self['name']
         display_path = Path(full_path)
