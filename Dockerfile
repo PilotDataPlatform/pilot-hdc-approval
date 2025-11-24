@@ -1,4 +1,4 @@
-FROM docker-registry.ebrains.eu/hdc-services-image/base-image:python-3.10.12-v2 AS base-image
+FROM docker-registry.ebrains.eu/hdc-services-image/base-image:python-3.10.14-v1 AS base-image
 
 ENV PYTHONDONTWRITEBYTECODE=true \
     PYTHONIOENCODING=UTF-8 \

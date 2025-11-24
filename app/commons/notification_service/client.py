@@ -4,8 +4,6 @@
 # Version 3.0 (the "License") available at https://www.gnu.org/licenses/agpl-3.0.en.html.
 # You may not use this file except in compliance with the License.
 
-from typing import List
-from typing import Optional
 from uuid import UUID
 
 import httpx
@@ -24,10 +22,10 @@ class Notification:
     def __init__(
         self,
         recipient_username: str,
-        include_ids: Optional[list[str]],
+        include_ids: list[str] | None,
         initiator_username: str,
-        source_id: Optional[str],
-        destination_id: Optional[str],
+        source_id: str | None,
+        destination_id: str | None,
         project_code: str,
         action: CopyRequestAction,
         request_id: UUID,
@@ -46,7 +44,7 @@ class Notification:
         node = Node(result[0])
         return Location(id=node.id, path=str(node.display_path), zone=node.zone)
 
-    async def set_targets(self) -> List[Target]:
+    async def set_targets(self) -> list[Target]:
         result = await bulk_get_by_ids(self.include_ids)
         nodes = {node['id']: Node(node) for node in result}
         targets = []

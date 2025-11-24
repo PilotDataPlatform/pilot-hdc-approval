@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "service_approval"
-version = "2.2.6"
+version = "2.2.9"
 description = ""
 authors = ["Indoc Research"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.10,<3.11"
 fastapi = "0.88.0"
 fastapi-utils = "0.2.1"
 uvicorn = "0.12.3"
